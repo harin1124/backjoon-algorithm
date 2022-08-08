@@ -12,7 +12,7 @@ package backjoon;
  * @studyStartDate 2022-08-01
  * @studyEndDate 2022-08-01
  */
-public class probleam15596 {
+public class problem15596 {
 	static long sum(int[] a){
 		long result = 0;
 		for (int i : a) {
