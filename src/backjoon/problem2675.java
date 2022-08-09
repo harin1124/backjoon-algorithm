@@ -13,39 +13,36 @@ import java.util.Scanner;
 		  S의 길이는 적어도 1이며, 20글자를 넘지 않는다.
  * @output 각 테스트 케이스에 대해 P를 출력한다.
  * @studyStartDate 2022-08-08
- * @studyEndDate 2022-08-
+ * @studyEndDate 2022-08-09
  */
 public class problem2675 {
 	public static void main(String[] args) {
 		Scanner s = new Scanner(System.in);
 		int size = s.nextInt();
 		int len = 0;
-		String[] r = new String[size];
-		String str;
-		String t;
-		String t2 = "";
-		String t3 = "";
+		String[] resultList = new String[size];
+		String s1;
+		String s2 = "";
+		String s3 = "";
 		for(int i=0; i<size; i++){
 			len = s.nextInt();
-			str = s.nextLine();
-			for(int j=1; j<str.length(); j++){
-				System.out.println(str.charAt(j));
-				t = String.valueOf(str.charAt(j));
+			s1 = s.nextLine();
+			resultList[i] = "";
+			for(int j=1; j<s1.length(); j++){
+				//System.out.println("\t"+s1.charAt(j));
+				s2 = String.valueOf(s1.charAt(j));
+
 				for(int x=0; x<len; x++){
-					t2 += t;
+					s3 += s2;
 				}
-				t3 += t2;
-				t2 = "";
+
+				resultList[i] += s3;
+				s3 = "";
 			}
-			t3 = "";
-			r[i] = t3;
-
-			// 배열 합치기
-
 		}
-
-		System.out.println(">>> "+r[0]);
-
+		for(String str : resultList){
+			System.out.println(str);
+		}
 		s.close();
 	}
 }
