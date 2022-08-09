@@ -3,24 +3,24 @@ package backjoon;
 import java.util.Scanner;
 
 /**
- * @title µÎ ¼ö ºñ±³ÇÏ±â
- * @desc µÎ Á¤¼ö A¿Í B°¡ ÁÖ¾îÁ³À» ¶§, A¿Í B¸¦ ºñ±³ÇÏ´Â ÇÁ·Î±×·¥À» ÀÛ¼ºÇÏ½Ã¿À.
- * @input Ã¹Â° ÁÙ¿¡ A¿Í B°¡ ÁÖ¾îÁø´Ù. A¿Í B´Â °ø¹é ÇÑ Ä­À¸·Î ±¸ºÐµÇ¾îÁ® ÀÖ´Ù.
- * @output Ã¹Â° ÁÙ¿¡ ´ÙÀ½ ¼¼ °¡Áö Áß ÇÏ³ª¸¦ Ãâ·ÂÇÑ´Ù.<br>
-		   A°¡ Bº¸´Ù Å« °æ¿ì¿¡´Â '>'¸¦ Ãâ·ÂÇÑ´Ù.<br>
-		   A°¡ Bº¸´Ù ÀÛÀº °æ¿ì¿¡´Â '<'¸¦ Ãâ·ÂÇÑ´Ù.<br>
-		   A¿Í B°¡ °°Àº °æ¿ì¿¡´Â '=='¸¦ Ãâ·ÂÇÑ´Ù.
+ * @title ë‘ ìˆ˜ ë¹„êµí•˜ê¸°
+ * @desc ë‘ ì •ìˆ˜ Aì™€ Bê°€ ì£¼ì–´ì¡Œì„ ë•Œ, Aì™€ Bë¥¼ ë¹„êµí•˜ëŠ” í”„ë¡œê·¸ëž¨ì„ ìž‘ì„±í•˜ì‹œì˜¤.
+ * @input ì²«ì§¸ ì¤„ì— Aì™€ Bê°€ ì£¼ì–´ì§„ë‹¤. Aì™€ BëŠ” ê³µë°± í•œ ì¹¸ìœ¼ë¡œ êµ¬ë¶„ë˜ì–´ì ¸ ìžˆë‹¤.
+ * @output ì²«ì§¸ ì¤„ì— ë‹¤ìŒ ì„¸ ê°€ì§€ ì¤‘ í•˜ë‚˜ë¥¼ ì¶œë ¥í•œë‹¤.<br>
+		   Aê°€ Bë³´ë‹¤ í° ê²½ìš°ì—ëŠ” '>'ë¥¼ ì¶œë ¥í•œë‹¤.<br>
+		   Aê°€ Bë³´ë‹¤ ìž‘ì€ ê²½ìš°ì—ëŠ” '<'ë¥¼ ì¶œë ¥í•œë‹¤.<br>
+		   Aì™€ Bê°€ ê°™ì€ ê²½ìš°ì—ëŠ” '=='ë¥¼ ì¶œë ¥í•œë‹¤.
  * @studyStartDate 2022-01-16
  * @studyEndDate 2022-01-16
  */
 public class problem1330 {
 	/* ====================================
-	¿¹Á¦ ÀÔ·Â
+	ì˜ˆì œ ìž…ë ¥
 	1 2
 	10 2
 	5 5
 	
-	¿¹Á¦ Ãâ·Â
+	ì˜ˆì œ ì¶œë ¥
 	<
 	>
 	==
