@@ -18,23 +18,12 @@ import java.util.Scanner;
 public class problem1152 {
 	public static void main(String[] args) throws Exception {
 		Scanner scan = new Scanner(System.in);
-		//String s = scan.nextLine();
-		String s = " The last character is a blank ";
-		String[] list = s.split(" ");
-		int x = list.length;
+		String[] s = scan.nextLine().trim().split(" ");
 
-		for(String d : list){
-			System.out.println(d);
+		if(s[0].equals(" ")){
+			System.out.println(s.length-1);
+		}else{
+			System.out.println(s.length);
 		}
-
-		if(list[0].equals("")){
-			x--;
-		}
-		if(list[list.length-1].equals("")){
-			x--;
-		}
-
-
-		System.out.println(x);
 	}
 }
