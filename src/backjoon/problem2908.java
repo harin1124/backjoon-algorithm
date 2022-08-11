@@ -15,7 +15,7 @@ import java.util.Scanner;
           두 수는 같지 않은 세 자리 수이며, 0이 포함되어 있지 않다.
  * @output 첫째 줄에 상수의 대답을 출력한다.
  * @studyStartDate 2022-08-11
- * @studyEndDate 2022-08-
+ * @studyEndDate 2022-08-11
  */
 public class problem2908 {
 	public static void main(String[] args) {
