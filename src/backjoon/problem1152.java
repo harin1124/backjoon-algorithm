@@ -13,7 +13,7 @@ import java.util.Scanner;
 		  또한 문자열은 공백으로 시작하거나 끝날 수 있다.
  * @output 첫째 줄에 단어의 개수를 출력한다.
  * @studyStartDate 2022-08-10
- * @studyEndDate 2022-08-
+ * @studyEndDate 2022-08-10
  */
 public class problem1152 {
 	public static void main(String[] args) throws Exception {
