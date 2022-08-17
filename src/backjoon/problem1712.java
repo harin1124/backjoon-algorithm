@@ -16,33 +16,24 @@ import java.util.Scanner;
  * @input 첫째 줄에 A, B, C가 빈 칸을 사이에 두고 순서대로 주어진다. A, B, C는 21억 이하의 자연수이다.
  * @output 첫 번째 줄에 손익분기점 즉 최초로 이익이 발생하는 판매량을 출력한다. 손익분기점이 존재하지 않으면 -1을 출력한다.
  * @studyStartDate 2022-08-17
- * @studyEndDate 2022-08-
+ * @studyEndDate 2022-08-17
  */
 public class problem1712 {
 	public static void main(String[] args) {
 		Scanner scan = new Scanner(System.in);
-		int a = scan.nextInt(); // 1000
-		int b = scan.nextInt(); // 70
-		int c = scan.nextInt(); // 170 만원
+		int a = scan.nextInt();
+		int b = scan.nextInt();
+		int c = scan.nextInt();
 		scan.close();
 
 		long result = 0;
 		long price = 0;
 
 		long i = 1;
-		if(b > c){
+		if(b > c || b == c){
 			i = -1;
 		}else{
-			i = (a+b)/c;
-			while(true){
-				result = a + (b*i);
-				price = (c * i);
-				//System.out.println("판매대수 = "+i+"\t총 생산비용 = "+result+"\t총 판매비용 = "+(c * i));
-				if(result < price){
-					break;
-				}
-				i++;
-			}
+			i = a/(c-b)+ 1;
 		}
 		System.out.println(i);
 	}
