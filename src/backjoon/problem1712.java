@@ -26,9 +26,6 @@ public class problem1712 {
 		int c = scan.nextInt();
 		scan.close();
 
-		long result = 0;
-		long price = 0;
-
 		long i = 1;
 		if(b > c || b == c){
 			i = -1;
