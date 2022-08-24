@@ -21,83 +21,90 @@ import java.io.InputStreamReader;
  * @studyEndDate 2022-08-
  */
 public class problem1193 {
+	static int row = 1;
+	static int col = 1;
+	static int moveCnt = 1;
+
+	public static void GetPos(String arrow){ //→
+		System.out.println("\t["+arrow+"] action after = [row="+row+" col="+col+"]");
+	}
+	public static void GetMoveCnt(){
+		System.out.println("\t\tmoveCnt="+moveCnt);
+	}
+
 	public static void main(String[] args) throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		//int num = Integer.valueOf(br.readLine());
-		int num = 9;
+		int num = 14;
+		int temp = 0;
 		br.close();
 
-		int row = 0;
-		int col = 0;
-
-		int a = 0;  // 수평 -> 이동
-		int b = 0;  // 좌측 아래 대각선 이동
-		int c = 0;  // 수직 이동
-		int d = 0;  // 우측 위 대각선 이동
-
-		int 몫 = num / 4;
-		int 나머지 = num % 4;
-
-		몫 = 2;
-		나머지 = 2;
-
-		System.out.println("몫 : "+몫);
-		System.out.println("나머지 : "+나머지);
-
-		if(몫 == 0){
-			// 작게 나오면 어떻게해야 하나...?
-			if(나머지 <= 1){
-				a++;
-			}
-			if(나머지 <= 2){
-				b = b+2;
-			}
-			if(나머지 <= 3){
-				c++;
-			}
+		if(num==1){
+			System.out.println("1/1");
 		}else{
-			// 몫 구하기
-			a = 몫;
-			c = 몫;
-
-			b = 몫 * 몫; // 몫은 4라는 것으로 16까지 숫자 얻어내기
-			d = b + 몫;
-
-			System.out.println("=====================");
-			System.out.println("a : "+a);
-			System.out.println("b : "+b);
-			System.out.println("c : "+c);
-			System.out.println("d : "+d);
-
-			if(나머지 > 0){
-				if(나머지 >= 1){
-					a++;
+			while(true){
+				// 1. 수평이동
+				col = col+1;
+				row = row==0 ? 1 : row;
+				moveCnt++;
+				GetPos("→");
+				GetMoveCnt();
+				if(moveCnt == num){
+					break;
 				}
-				if(나머지 >= 2){
-					b = b+2;
+
+				// 2. 좌측 아래 대각선 이동
+				if(moveCnt+(col-row) > num){
+					System.out.println("\t\t if");
+					//n번만큼 row 증가
+					//n번만큼 col 감소
+					row = row+(num-moveCnt);
+					col = col-(num-moveCnt);
+					break; //동일하기 때문에
+				}else{
+					System.out.println("\t\t else");
+					moveCnt = moveCnt+(col-row);
+					temp = row;
+					row = col;
+					col = temp;
 				}
-				if(나머지 >= 3){
-					c++;
+
+				GetPos("↙");
+				GetMoveCnt();
+				if(moveCnt == num){
+					break;
 				}
+
+				// 3. 수직 이동
+				row = row+1;
+				moveCnt++;
+				GetPos("↓");
+				GetMoveCnt();
+
+
+				// 4. 우측 위 대각선이동
+				if(moveCnt+(row-col) > num){
+					System.out.println("\t\t if");
+					//n번만큼 row 감소
+					//n번만큼 col 증가
+					row = row-(num-moveCnt);
+					col = col+(num-moveCnt);
+					break; //동일하기 때문에
+				}else{
+					System.out.println("\t\t else");
+					moveCnt = moveCnt+(row-col);
+					temp = row;
+					row = col;
+					col = temp;
+				}
+				GetPos("↗");
+				GetMoveCnt();
+				if(moveCnt == num){
+					break;
+				}
+
 			}
-			System.out.println("=====================");
-			System.out.println("a : "+a);
-			System.out.println("b : "+b);
-			System.out.println("c : "+c);
-			System.out.println("d : "+d);
-
-			col = 1 + a + b - d;
-			row = 1 + c + d - b;
-
-
-
-			System.out.println("최종 결과 =====================");
-			System.out.println("a : "+a);
-			System.out.println("b : "+b);
-			System.out.println("c : "+c);
-			System.out.println("d : "+d);
+			System.out.println(row+"/"+col);
 		}
-
-		System.out.println(row+"/"+col);
 	}
 }
