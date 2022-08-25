@@ -18,7 +18,7 @@ import java.io.InputStreamReader;
  * @input 첫째 줄에 X(1 ≤ X ≤ 10,000,000)가 주어진다.
  * @output 첫째 줄에 분수를 출력한다.
  * @studyStartDate 2022-08-22
- * @studyEndDate 2022-08-
+ * @studyEndDate 2022-08-24
  */
 public class problem1193 {
 	static int row = 1;
