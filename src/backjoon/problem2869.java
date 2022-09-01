@@ -9,7 +9,7 @@ package backjoon;
  * @input 첫째 줄에 세 정수 A, B, V가 공백으로 구분되어서 주어진다. (1 ≤ B < A ≤ V ≤ 1,000,000,000)
  * @output 첫째 줄에 달팽이가 나무 막대를 모두 올라가는데 며칠이 걸리는지 출력한다.
  * @studyStartDate 2022-08-25
- * @studyEndDate 2022-08-25
+ * @studyEndDate 2022-08-
  */
 public class problem2869 {
 }
