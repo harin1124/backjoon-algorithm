@@ -45,29 +45,24 @@ public class problem10250 {
 		StringTokenizer st = null;
 		int h = 0;
 		int w = 0;
-		int guestNumber = 0;
+		int n = 0;
+		int temp = 0;
 		String roomNumber = "";
 		for(int i=0; i<size; i++){
 			st = new StringTokenizer(br.readLine());
 			h = Integer.parseInt(st.nextToken());
 			w = Integer.parseInt(st.nextToken());
-			guestNumber = Integer.parseInt(st.nextToken());
+			n = Integer.parseInt(st.nextToken());
 
-			//roomNumber = String.valueOf(guestNumber % h) + String.valueOf((guestNumber / h <= 10) ? (guestNumber / h + 1) : "0"+(guestNumber / h + 1));
-			roomNumber = String.valueOf(guestNumber % h == 0 ? h : guestNumber % h);
-			if((guestNumber / h) == 1 && guestNumber % h == 0) {
-				roomNumber += "01";
-			}else if(guestNumber / h >= 10){
-				roomNumber += (guestNumber / h + 1);
-			}else{
-				roomNumber += "0"+(guestNumber / h + 1);
-			}
+			// 층 구하기
+			roomNumber = String.valueOf((n % h == 0) ? h : n % h) ; // 손님 번째에서 높이로 나머지를 구해서 0이면 최고층(h 그 자체)이고, 그게 아니면 손님 번째에서 높이로 나머지를 구한 것
+			// 호 구하기
+			temp = (int)Math.ceil((double)n / h); // 손님 번째에서 높이를 나누어 나온 값을 올림처리하여 호수를 구함
+			roomNumber += String.valueOf(temp >= 10 ? temp : "0"+temp); // 호수가 1호 일 경우, 텍스트로 01호로 나와야하기 때문에 10보다 작으면 0 텍스트를 붙여줌
 			bw.write(roomNumber+"\n");
 		}
 
 		br.close();
 		bw.close();
-
-		// 반례 6 12 6
 	}
 }
