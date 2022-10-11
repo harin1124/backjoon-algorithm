@@ -2,7 +2,7 @@
   <profile version="1.0">
     <option name="myName" value="Project Default" />
     <inspection_tool class="JavadocDeclaration" enabled="true" level="WARNING" enabled_by_default="true">
-      <option name="ADDITIONAL_TAGS" value="title,desc,input,output,studyStartDate,studyEndDate" />
+      <option name="ADDITIONAL_TAGS" value="title,desc,input,output,studyStartDate,studyEndDate,limit" />
     </inspection_tool>
   </profile>
 </component>
