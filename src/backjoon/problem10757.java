@@ -21,24 +21,16 @@ public class problem10757 {
 		StringTokenizer numbers = new StringTokenizer(br.readLine());
 
 		String maxStr = numbers.nextToken();
-		int max = Integer.parseInt(maxStr);
 		String minStr = numbers.nextToken();
-		int min = Integer.parseInt(minStr);
 
-		if(max < min){
-			int temp = max;
-			String tempStr = maxStr;
-			max = min;
-			min = temp;
+		if(maxStr.length() < minStr.length()){
+			String temp = maxStr;
 			maxStr = minStr;
-			minStr = tempStr;
+			minStr = temp;
 		}
 
-
-		int[] maxDigit = Stream.of(Integer.toString(max).split("")).mapToInt(Integer::parseInt).toArray();
-		max = maxStr.length()-1;
-		int[] minDigit = Stream.of(Integer.toString(min).split("")).mapToInt(Integer::parseInt).toArray();
-		min = minStr.length()-1;
+		int[] maxDigit = Stream.of(maxStr.split("")).mapToInt(Integer::parseInt).toArray();
+		int[] minDigit = Stream.of(minStr.split("")).mapToInt(Integer::parseInt).toArray();
 
 		System.out.println(Arrays.toString(maxDigit));
 		System.out.println(Arrays.toString(minDigit));
@@ -46,12 +38,12 @@ public class problem10757 {
 		// 올림수
 		int nextPlus = 0;
 		String result = "";
-		for(int i=max, j=min; i>=0; i--, j--){
+		for(int i=maxDigit.length-1, j=minDigit.length-1; i>=0; i--, j--){
 			System.out.println("max["+i+"] = "+maxDigit[i]);
 			if(j >= 0){
 				System.out.println("min["+j+"] = "+minDigit[j]);
 				if(nextPlus > 0){ // 올림수가 있으면
-					if((maxDigit[i] + minDigit[j] + 1) > 10){
+					if((maxDigit[i] + minDigit[j] + 1) >= 10){
 						result = ((maxDigit[i] + minDigit[j] + 1) - 10) + result;
 						System.out.println("1. "+result);
 						nextPlus = 1;
@@ -61,7 +53,7 @@ public class problem10757 {
 						nextPlus = 0;
 					}
 				} else { // 올림수가 없으면
-					if((maxDigit[i] + minDigit[j]) > 10){
+					if((maxDigit[i] + minDigit[j]) >= 10){
 						result = ((maxDigit[i] + minDigit[j]) - 10) + result;
 						System.out.println("3. "+result);
 						nextPlus = 1;
@@ -74,7 +66,7 @@ public class problem10757 {
 			} else {
 				// maxDigit 혼자 더하기
 				if(nextPlus > 0){ // 올림수가 있으면
-					if((maxDigit[i] + 1) > 10){
+					if((maxDigit[i] + 1) >= 10){
 						result = ((maxDigit[i] + 1) - 10) + result;
 						System.out.println("5. "+result);
 						nextPlus = 1;
@@ -89,10 +81,12 @@ public class problem10757 {
 					nextPlus = 0;
 				}
 			}
+			if(i == 0 && nextPlus > 0){
+				result = "1"+result;
+			}
 			System.out.println("====================");
 		}
-		System.out.println();
-		System.out.println(result);
+		bw.write(result+"\n");
 
 		br.close();
 		bw.close();
