@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
  * @output 각각의 Test case에 대해서 해당 집에 거주민 수를 출력하라.
  * @limit 1 ≤ k, n ≤ 14
  * @studyStartDate 2022-10-11
- * @studyEndDate 2022-10-
+ * @studyEndDate 2022-10-11
  */
 public class problem2775 {
 	// space 확인용 메소드
