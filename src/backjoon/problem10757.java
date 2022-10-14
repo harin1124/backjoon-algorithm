@@ -37,28 +37,28 @@ public class problem10757 {
 
 		// 올림수
 		int nextPlus = 0;
-		String result = "";
+		StringBuilder result = new StringBuilder();
 		for(int i=maxDigit.length-1, j=minDigit.length-1; i>=0; i--, j--){
 			System.out.println("max["+i+"] = "+maxDigit[i]);
 			if(j >= 0){
 				System.out.println("min["+j+"] = "+minDigit[j]);
 				if(nextPlus > 0){ // 올림수가 있으면
 					if((maxDigit[i] + minDigit[j] + 1) >= 10){
-						result = ((maxDigit[i] + minDigit[j] + 1) - 10) + result;
+						result.insert(0, maxDigit[i] + minDigit[j] + 1 - 10);
 						System.out.println("1. "+result);
 						nextPlus = 1;
 					} else {
-						result = ((maxDigit[i] + minDigit[j] + 1)) + result;
+						result.insert(0, maxDigit[i] + minDigit[j] + 1);
 						System.out.println("2. "+result);
 						nextPlus = 0;
 					}
 				} else { // 올림수가 없으면
 					if((maxDigit[i] + minDigit[j]) >= 10){
-						result = ((maxDigit[i] + minDigit[j]) - 10) + result;
+						result.insert(0, maxDigit[i] + minDigit[j] - 10);
 						System.out.println("3. "+result);
 						nextPlus = 1;
 					} else {
-						result = (maxDigit[i] + minDigit[j]) + result;
+						result.insert(0, maxDigit[i] + minDigit[j]);
 						System.out.println("4. "+result);
 						nextPlus = 0;
 					}
@@ -67,26 +67,26 @@ public class problem10757 {
 				// maxDigit 혼자 더하기
 				if(nextPlus > 0){ // 올림수가 있으면
 					if((maxDigit[i] + 1) >= 10){
-						result = ((maxDigit[i] + 1) - 10) + result;
+						result.insert(0, maxDigit[i] + 1 - 10);
 						System.out.println("5. "+result);
 						nextPlus = 1;
 					} else {
-						result = ((maxDigit[i] + 1)) + result;
+						result.insert(0, maxDigit[i] + 1);
 						System.out.println("6. "+result);
 						nextPlus = 0;
 					}
 				} else { // 올림수가 없으면
-					result = maxDigit[i] + result;
+					result.insert(0, maxDigit[i]);
 					System.out.println("7. "+result);
 					nextPlus = 0;
 				}
 			}
 			if(i == 0 && nextPlus > 0){
-				result = "1"+result;
+				result.insert(0, "1");
 			}
 			System.out.println("====================");
 		}
-		bw.write(result);
+		bw.write(result.toString());
 
 		br.close();
 		bw.close();
