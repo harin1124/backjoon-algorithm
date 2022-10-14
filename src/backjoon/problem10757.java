@@ -11,7 +11,7 @@ import java.util.stream.Stream;
  * @input 첫째 줄에 A와 B가 주어진다. (0 < A,B < 1010000)
  * @output 첫째 줄에 A+B를 출력한다.
  * @studyStartDate 2022-10-13
- * @studyEndDate 2022-10-
+ * @studyEndDate 2022-10-14
  */
 public class problem10757 {
 	public static void main(String[] args) throws Exception {
@@ -86,7 +86,7 @@ public class problem10757 {
 			}
 			System.out.println("====================");
 		}
-		bw.write(result+"\n");
+		bw.write(result);
 
 		br.close();
 		bw.close();
