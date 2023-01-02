@@ -1,6 +1,10 @@
 package backjoon;
 
-import java.util.Scanner;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.util.StringTokenizer;
 
 /**
  * @title 킹, 퀸, 룩, 비숍, 나이트, 폰
@@ -14,7 +18,7 @@ import java.util.Scanner;
  * @output 첫째 줄에 입력에서 주어진 순서대로 몇 개의 피스를 더하거나 빼야 되는지를 출력한다.<br>
 		   만약 수가 양수라면 동혁이는 그 개수 만큼 피스를 더해야 하는 것이고, 음수라면 제거해야 하는 것이다.
  * @studyStartDate 2022-08-08
- * @studyEndDate 2022-08-
+ * @studyEndDate 2022-11-02
  */
 public class Problem3003 {
 	/* ====================================
@@ -26,12 +30,17 @@ public class Problem3003 {
 	1 0 0 0 0 1
 	-1 0 0 1 0 7
 	==================================== */
-	public static void main(String[] args) {
-		Scanner scanner = new Scanner(System.in);
-		int[] list = {1,1,2,2,2,8};
-		int j=0;
-		// 킹 1개, 퀸 1개, 룩 2개, 비숍 2개, 나이트 2개, 폰 8개
-		
-		
+	public static void main(String[] args) throws Exception {
+		BufferedReader br = new BufferedReader(new InputStreamReader((System.in)));
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringTokenizer numbers = new StringTokenizer(br.readLine());
+
+		int[] pieces = {1,1,2,2,2,8};
+
+		for(int p : pieces){
+			bw.write((Math.abs(p)-Math.abs( Integer.parseInt(numbers.nextToken()) ))+" ");
+		}
+		bw.close();
+		br.close();
 	}
 }
