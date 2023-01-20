@@ -14,53 +14,48 @@ import java.util.Scanner;
  * @studyStartDate 2023-01-20
  * @studyEndDate 2023-01-20
  */
-public class Problem_02_09 {
+public class Problem_02_09_02 {
 	public static void main(String[] args) throws Exception {
+		// 강의를 보고 참고하여, 코드를 효율적으로 분리한 풀이법
 		Scanner scan = new Scanner(System.in);
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
 		int size = Integer.parseInt(scan.nextLine());
 		int[][] panel = new int[size][size];
 
+		int i=0;
 		int j=0;
-		for(int i=0; i<size; i++){
+		for(i=0; i<size; i++){
 			for(j=0; j<size; j++){
 				panel[i][j] = scan.nextInt();
 			}
 		}
-		// 최고값 찾기
-		int max = 0;
-		// 1. 가로값 중 최고값 찾기
-		int rowMaxTemp = 0;
-		// 2. 세로값 중 최고값 찾기
-		int colMaxTemp = 0;
-		// 3. 왼쪽에서 오른쪽으로 가는 대각선 값
-		int leftSlashTemp = 0;
-		// 4, 오른쪽에서 왼쪽으로 가는 대각선 값
-		int rightSlashTemp = 0;
-		for(int i=0; i<size; i++){
-			for(j=0; j<size; j++){
-				rowMaxTemp += panel[i][j];
-				colMaxTemp += panel[j][i];
-			}
-			if(max < rowMaxTemp){
-				max = rowMaxTemp;
-			}
-			if(max < colMaxTemp){
-				max = colMaxTemp;
-			}
-			leftSlashTemp += panel[i][i];
-			rightSlashTemp += panel[i][size-1-i];
-			rowMaxTemp = 0;
-			colMaxTemp = 0;
-		}
 
-		if(leftSlashTemp < rightSlashTemp){
-			leftSlashTemp = rightSlashTemp;
+		int max = 0;
+		int temp1 = 0;
+		int temp2 = 0;
+		for(i=0; i<size; i++){
+			temp1 = 0;
+			temp2 = 0;
+			for(j=0; j<size; j++){
+				temp1 += panel[i][j];
+				temp2 += panel[j][i];
+			}
+			if(max < temp1){
+				max = temp1;
+			}
+			if(max < temp2){
+				max = temp2;
+			}
 		}
-		if(max < leftSlashTemp){
-			max = leftSlashTemp;
+		temp1 = 0;
+		temp2 = 0;
+		for(i=0; i<size; i++){
+			temp1 += panel[i][i];
+			temp2 += panel[i][size-1-i];
 		}
+		temp1 = temp1 < temp2 ? temp2 : temp1;
+		max = max < temp1 ? temp1 : max;
 
 		bw.write(max+"");
 		bw.close();
