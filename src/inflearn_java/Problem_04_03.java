@@ -23,11 +23,11 @@ import java.util.Scanner;
  * 단어의 길이는 100을 넘지 않습니다.
  * @output 첫 줄에 각 구간의 매출액 종류를 순서대로 출력합니다.
  * @studyStartDate 2023-02-01
- * @studyEndDate 2023-02-
+ * @studyEndDate 2023-02-04
  */
 public class Problem_04_03 {
 	public static void main(String[] args) throws Exception {
-		// n 제곱이 아닌 n만큼만 돌도록 처리
+		// n 제곱이 아닌 n만큼만 돌도록 처리;
 		Scanner scan = new Scanner(System.in);
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
@@ -38,35 +38,41 @@ public class Problem_04_03 {
 		for(i=0; i<arr.length; i++){
 			arr[i] = scan.nextInt();
 		}
-
 		HashMap<Integer, Integer> map = new HashMap<>();
 		// 초기구간 설정
 		for(i=0; i<range; i++){
 			map.put(arr[i], map.get(arr[i]) == null ? 1 : map.get(arr[i])+1);
 		}
-		//System.out.println("map = "+map);
-		//System.out.println(map.keySet().size());
-		bw.write(map.keySet().size()+" ");
-		//System.out.println("=====================");
+		bw.write("map = "+map+"\n");
+		bw.write(map.keySet().size()+"\n");
+		bw.write("=====================\n");
+		int n = 0;
 		// 이후구간 설정
 		for(i=0; i<arr.length; i++){
-			//System.out.printf("arr[%d] ~ arr[%d]", i+1, range+i);
-			//System.out.println();
-			if(range+i >= arr.length){
+			bw.write(i+"번째\n");
+			n = range+i;
+			bw.write("arr["+(i+1)+"] ~ arr["+n+"]\n");
+			if(n >= arr.length){
 				break;
 			}
-			//System.out.println("삭제하는 인덱스 = "+i+" 삭제하는 숫자 키 = "+arr[i]);
-			//System.out.println("새로 넣어주는 인덱스 = "+(i+range)+" 추가하는 숫자 키 = "+arr[i+range]);
+			bw.write("삭제 인덱스 = "+i+" 숫자 = "+arr[i]+"\n");
+			bw.write("신규 인덱스 = "+(n)+" 숫자 = "+arr[n]+"\n");
 
+			// 인덱스 삭제 또는 감소 처리
 			if(map.get(arr[i]) != null && map.get(arr[i]) > 1){
-				map.put(arr[i], map.get(arr[i]-1));
+				map.put(arr[i], map.get(arr[i])-1);
 			} else {
 				map.remove(arr[i]);
 			}
-			map.put(arr[i+range], 0);
-			//System.out.println("map = "+map);
-			bw.write(map.keySet().size()+" ");
-			//System.out.println("==========================");
+			// 인덱스 추가 또는 증가 처리
+			if(map.get(arr[n]) != null){
+				map.put(arr[n], map.get(arr[n])+1);
+			} else {
+				map.put(arr[n], 1);
+			}
+			bw.write("map = "+map+"\n");
+			bw.write("키 갯수 : "+map.keySet().size()+" \n");
+			bw.write("==========================\n");
 		}
 		bw.close();
 		scan.close();
