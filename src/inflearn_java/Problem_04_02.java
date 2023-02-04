@@ -31,12 +31,12 @@ public class Problem_04_02 {
 		int c = 0;
 		for(i=0; i<str.length(); i++){
 			c = str.charAt(i);
-			map1.put(c, map1.get(c) == null ? 1 : map1.get(c)+1);
+			map1.put(c, map1.getOrDefault(c, 0)+1);
 		}
 		str = br.readLine();
 		for(i=0; i<str.length(); i++){
 			c = str.charAt(i);
-			map2.put(c, map2.get(c) == null ? 1 : map2.get(c)+1);
+			map2.put(c, map2.getOrDefault(c, 0)+1);
 		}
 
 		str = "YES";
