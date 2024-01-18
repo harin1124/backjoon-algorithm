@@ -37,10 +37,9 @@ public class Problem_02_06 {
 			num = temp;
 			if(num > 1){
 				// 소수 판별
-				for(j=2; j<=num; j++){
+				for(j=2; j<num; j++){
 					// 숫자를 하나씩 증가시켜 나눠서 나누어 떨어지는지 확인
-					// 이 때, 나누어떨어지는 수는 num과 동일하지 않아야 한다.
-					if(num != j && num % j == 0){
+					if(num % j == 0){
 						chk = false;
 						break;
 					}
