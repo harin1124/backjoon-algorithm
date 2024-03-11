@@ -1,8 +1,7 @@
 package inflearn_java;
 
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
 import java.util.Scanner;
 
 /**
@@ -15,34 +14,57 @@ import java.util.Scanner;
  * 두 번째 줄에 집합의 원소 N개가 주어진다. 각 원소는 중복되지 않는다.
  * @output 첫 번째 줄에 “YES" 또는 ”NO"를 출력한다.
  * @studyStartDate 2024-03-11
- * @studyEndDate 
+ * @studyEndDate 2024-03-12
  */
 public class Problem_08_01 {
+    static String result = "NO";
+    static boolean flag = false;
     static int[] arr;
-    static int sum = 0;
-    static int half = 0;
+    static int total = 0;
 
-    static String dfs(int level, int sum){
-        if(){
-
+    static void dfs(int level, int sum){
+        // 재귀로 복귀했을 때, 아래 부분을 더 이상 진행하지 못하도록
+        // 전역으로 설정한 flag 값을 확인하여 처리한다
+        if(flag){
+            return;
         }
-        return "";
+        // 포함, 미포함을 확인하기 전에
+        // 이미 sum 값이 total을 2로 나눈 값보다 크면 더 이상 볼 필요가 없으므로 종료
+        if(sum > total / 2){
+            return;
+        }
+        
+        // 레벨 더 이상 증가 불가
+        if(level == arr.length){
+            if(total - sum == sum) {
+                result = "YES";
+                flag = true;
+            }
+        } else {
+            // 사용한다
+            dfs(level+1, sum+arr[level]);
+            // 사용안한다
+            dfs(level+1, sum);
+        }
     }
     
     public static void main(String[] args) throws Exception {
         Scanner scan = new Scanner(System.in);
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         
         int size = scan.nextInt();
+        arr = new int[size];
 
-        for(int i=0; i<sum; i++){
+        for(int i=0; i<size; i++){
             arr[i] = scan.nextInt();
-            sum += arr[i];
+            total += arr[i];
         }
-
-        half = sum / 2;
-
+        
         dfs(0, 0);
         
+        bw.write(result);
+        
         scan.close();
+        bw.close();
     }
 }
