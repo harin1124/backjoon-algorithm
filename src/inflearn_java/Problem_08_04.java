@@ -21,7 +21,10 @@ public class Problem_08_04 {
 
     static void dfs(int level){
         if(level == m){
-            System.out.printf("%s %s\r\n", arr[0], arr[1]);
+            for(int i : arr){
+                System.out.printf("%s ", i);
+            }
+            System.out.println();
         } else {
             for(int i=1; i<=n; i++){
                 arr[level] = i;
@@ -34,8 +37,8 @@ public class Problem_08_04 {
         Scanner scan = new Scanner(System.in);
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         
-        n = 3;//scan.nextInt();
-        m = 2;//scan.nextInt();
+        n = scan.nextInt();
+        m = scan.nextInt();
         arr = new int[m];
         
         dfs(0);
