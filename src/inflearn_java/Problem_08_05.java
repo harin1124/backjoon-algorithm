@@ -2,6 +2,8 @@ package inflearn_java;
 
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -18,7 +20,7 @@ import java.util.Scanner;
  * @studyEndDate 2024-03-16
  */
 public class Problem_08_05 {
-    static int[] coinArr; // 코인 배열
+    static Integer[] coinArr; // 코인 배열
     static int total;
     static int result = Integer.MAX_VALUE;
     
@@ -29,7 +31,7 @@ public class Problem_08_05 {
      */
     static void dfs(int level, int sum){
         // total을 넘은 경우는 더 가지를 뻗을 이유가 없음
-        if(sum > total){
+        if(sum > total || level >= result){
             return;
         }
         
@@ -48,11 +50,15 @@ public class Problem_08_05 {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         
         int coinSize = scan.nextInt();
-        coinArr = new int[coinSize];
+        coinArr = new Integer[coinSize];
         
         for(int i=0; i<coinSize; i++){
             coinArr[i] = scan.nextInt();
         }
+        
+        // 시간초과로 인해, 코인배열의 순서를 정리해서 성능 개선
+        // 큰 것부터 먼저 조회해야 답을 빨리 찾을 수 있다
+        Arrays.sort(coinArr, Collections.reverseOrder());
         
         total = scan.nextInt();
         
