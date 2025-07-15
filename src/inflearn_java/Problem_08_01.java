@@ -13,58 +13,53 @@ import java.util.Scanner;
  * @input 첫 번째 줄에 자연수 N(1<=N<=10)이 주어집니다.
  * 두 번째 줄에 집합의 원소 N개가 주어진다. 각 원소는 중복되지 않는다.
  * @output 첫 번째 줄에 “YES" 또는 ”NO"를 출력한다.
- * @studyStartDate 2024-03-11
- * @studyEndDate 2024-03-12
+ * @studyStartDate 2025-07-15
+ * @studyEndDate 2025-07-15
  */
 public class Problem_08_01 {
-    static String result = "NO";
-    static boolean flag = false;
-    static int[] arr;
-    static int total = 0;
-
-    static void dfs(int level, int sum){
-        // 재귀로 복귀했을 때, 아래 부분을 더 이상 진행하지 못하도록
-        // 전역으로 설정한 flag 값을 확인하여 처리한다
-        if(flag){
-            return;
-        }
-        // 포함, 미포함을 확인하기 전에
-        // 이미 sum 값이 total을 2로 나눈 값보다 크면 더 이상 볼 필요가 없으므로 종료
-        if(sum > total / 2){
-            return;
-        }
-        
-        // 레벨 더 이상 증가 불가
-        if(level == arr.length){
-            if(total - sum == sum) {
-                result = "YES";
-                flag = true;
-            }
-        } else {
-            // 사용한다
-            dfs(level+1, sum+arr[level]);
-            // 사용안한다
-            dfs(level+1, sum);
-        }
-    }
-    
-    public static void main(String[] args) throws Exception {
-        Scanner scan = new Scanner(System.in);
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        
-        int size = scan.nextInt();
-        arr = new int[size];
-
-        for(int i=0; i<size; i++){
-            arr[i] = scan.nextInt();
-            total += arr[i];
-        }
-        
-        dfs(0, 0);
-        
-        bw.write(result);
-        
-        scan.close();
-        bw.close();
-    }
+	static String result = "NO";
+	static int n;
+	static boolean flag = false;
+	static int[] arr;
+	static int total = 0;
+	
+	public static void dfs(int level, int sum, int[] arr) {
+		if (flag) {
+			return;
+		}
+		
+		if(sum > total / 2) {
+			return;
+		}
+		
+		if(level == n) {
+			if((total - sum) == sum) {
+				result = "YES";
+				flag = true;
+			}
+		} else {
+			dfs(level + 1, sum + arr[level], arr);
+			dfs(level + 1, sum, arr);
+		}
+	}
+	
+	public static void main(String[] args) throws Exception {
+		Scanner scan = new Scanner(System.in);
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		n = scan.nextInt();
+		arr = new int[n];
+		
+		for (int i = 0; i < n; i++) {
+			arr[i] = scan.nextInt();
+			total += arr[i];
+		}
+		
+		dfs(0, 0, arr);
+		
+		bw.write(result);
+		
+		scan.close();
+		bw.close();
+	}
 }
