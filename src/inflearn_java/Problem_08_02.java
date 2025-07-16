@@ -2,6 +2,7 @@ package inflearn_java;
 
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
+import java.util.Arrays;
 import java.util.Scanner;
 
 /**
@@ -14,43 +15,46 @@ import java.util.Scanner;
  * @input 첫 번째 줄에 자연수 C(1<=C<=100,000,000)와 N(1<=N<=30)이 주어집니다.<br>
  * 둘째 줄부터 N마리 바둑이의 무게가 주어진다.
  * @output 첫 번째 줄에 가장 무거운 무게를 출력한다.
- * @studyStartDate 2024-03-12
- * @studyEndDate 2024-03-12
+ * @studyStartDate 2025-07-16
+ * @studyEndDate 2025-07-16
  */
 public class Problem_08_02 {
-    static int[] arr;
-    static int max = 0;
-    static int maxWeight;
-
-    static void dfs(int level, int sum){
-        if(sum <= maxWeight && sum > max){
-            max = sum;
-        }
-
-        if(level == arr.length){
-            return;
-        } else {
-            dfs(level+1, sum);
-            dfs(level+1, sum+arr[level]);
-        }
-    }
-    public static void main(String[] args) throws Exception {
-        Scanner scan = new Scanner(System.in);
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        
-        maxWeight = scan.nextInt();
-        int size = scan.nextInt();
-        arr = new int[size];
-
-        for(int i=0; i<size; i++){
-            arr[i] = scan.nextInt();
-        }
-        
-        dfs(0, 0);
-
-        bw.write(max+"");
-        
-        scan.close();
-        bw.close();
-    }
+	static int[] arr;
+	static int max = 0;
+	static int maxWeight;
+	
+	public static void main(String[] args) throws Exception {
+		Scanner scan = new Scanner(System.in);
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		maxWeight = scan.nextInt();
+		int size = scan.nextInt();
+		arr = new int[size];
+		
+		for (int i = 0; i < size; i++) {
+			arr[i] = scan.nextInt();
+		}
+		
+		Arrays.sort(arr);
+		
+		dfs(0, 0);
+		
+		bw.write(max + "");
+		
+		scan.close();
+		bw.close();
+	}
+	
+	static void dfs(int level, int sum) {
+		if(sum > maxWeight) {
+			return;
+		}
+		
+		if(level == arr.length){
+			max = Math.max(max, sum);
+		} else {
+			dfs(level + 1, sum + arr[level]);
+			dfs(level + 1, sum);
+		}
+	}
 }
