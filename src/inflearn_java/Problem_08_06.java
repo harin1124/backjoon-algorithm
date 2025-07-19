@@ -2,8 +2,6 @@ package inflearn_java;
 
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.Scanner;
 
 /**
@@ -18,48 +16,50 @@ import java.util.Scanner;
  * @studyEndDate 2024-03-16
  */
 public class Problem_08_06 {
-    static int[] arr;
-    static int[] arrChk;
-    static int[] resultArr;
-    static int n;
-    static int m;
-    
-    static void dfs(int level){
-        if(level == m){
-            for(int i : resultArr){
-                System.out.printf("%s ", i);
-            }
-            System.out.println();
-        } else {
-            for(int i=0; i<n; i++){
-                // 중복은 나오지 않도록 체크
-                if(arrChk[i] == 0){
-                    resultArr[level] = arr[i];
-                    arrChk[i] = 1;
-                    dfs(level+1);
-                    arrChk[i] = 0;
-                }
-            }
-        }
-    }
-
-    public static void main(String[] args) throws Exception {
-        Scanner scan = new Scanner(System.in);
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
-        
-        n = scan.nextInt();
-        m = scan.nextInt();
-        arr = new int[n];
-        arrChk = new int[n];
-        resultArr = new int[m];
-        
-        for(int i=0; i<n; i++){
-            arr[i] = scan.nextInt();
-        }
-        
-        dfs(0);
-        
-        scan.close();
-        bw.close();
-    }
+	static int[] numberArr;
+	static int[] outputArr;
+	static int[] flagArr;
+	static int n;
+	static int m;
+	
+	static void dfs (int level) {
+		if (level == m) {
+			for(int i : outputArr){
+				System.out.printf(i + " ");
+			}
+			System.out.println();
+		} else {
+			for (int i = 0; i < n; i++) {
+				if(flagArr[i] == 0) {
+					outputArr[level] = numberArr[i];
+					flagArr[i] = 1;
+					dfs(level + 1);
+					flagArr[i] = 0;
+				}
+				
+			}
+		}
+	}
+	
+	public static void main(String[] args) throws Exception {
+		Scanner scan = new Scanner(System.in);
+		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		
+		n = scan.nextInt();
+		m = scan.nextInt();
+		outputArr = new int[m];
+		numberArr = new int[n];
+		flagArr = new int[n];
+		
+		for(int i = 0; i<n; i++) {
+			numberArr[i] = scan.nextInt();
+		}
+		
+		dfs(0);
+		
+		
+		bw.flush();
+		bw.close();
+		scan.close();
+	}
 }
