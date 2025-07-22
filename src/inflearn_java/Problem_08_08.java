@@ -1,10 +1,9 @@
 package inflearn_java;
 
-
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.util.Scanner;
+import java.util.StringTokenizer;
 
 /**
  * @title 수열 추측하기
@@ -40,10 +39,7 @@ public class Problem_08_08 {
 		if(n == r || r == 0) {
 			return 1;
 		} else {
-			int a = combi(n - 1, r - 1);
-			int b = combi(n - 1, r);
-			dy[n][r] = a + b;
-			return dy[n][r];
+			return dy[n][r] = combi(n - 1, r - 1) + combi(n - 1, r);
 		}
 	}
 	
@@ -55,7 +51,7 @@ public class Problem_08_08 {
 			// 순열 완성
 			if(sum == f) {
 				for(int i : resultArr) {
-					System.out.println(i + " ");
+					System.out.print(i + " ");
 				}
 				flag = true;
 			}
@@ -72,11 +68,12 @@ public class Problem_08_08 {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		Scanner scan = new Scanner(System.in);
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
+		StringTokenizer st = null;
 		
-		n = br.read();
-		f = br.read();
+		n = scan.nextInt();
+		f = scan.nextInt();
 		
 		combiArr = new int[n];
 		resultArr = new int[n];
@@ -88,7 +85,7 @@ public class Problem_08_08 {
 		
 		dfs(0, 0);
 		
-		br.close();
+		scan.close();
 		bw.flush();
 		bw.close();
 	}
