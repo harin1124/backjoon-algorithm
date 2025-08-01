@@ -4,8 +4,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.StringTokenizer;
 
 /**
@@ -47,27 +46,20 @@ public class Problem_09_02 {
 		
 		int n = Integer.parseInt(br.readLine());
 		
-		ArrayList<MeetingRoom> list = new ArrayList<>(n);
+		MeetingRoom[] list = new MeetingRoom[n];
 		for(int i = 0; i < n; i++) {
 			st = new StringTokenizer(br.readLine());
-			list.add(new MeetingRoom(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken())));
+			list[i] = new MeetingRoom(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
 		}
 		
-		Collections.sort(list);
+		Arrays.sort(list);
 		
 		int result = 0;
 		int lastTime = 0;
-		MeetingRoom now;
-		for(int i = 0; i < n; i++) {
-			now = list.get(i);
-			if(i == 0){
-				lastTime = now.endTime;
+		for(MeetingRoom room : list) {
+			if(room.startTime >= lastTime) {
+				lastTime = room.endTime;
 				result++;
-			} else {
-				if(now.startTime >= lastTime) {
-					lastTime = now.endTime;
-					result++;
-				}
 			}
 		}
 		
