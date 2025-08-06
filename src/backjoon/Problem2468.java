@@ -22,7 +22,7 @@ import java.util.StringTokenizer;
  * 높이는 1이상 100 이하의 정수이다.
  * @output 첫째 줄에 장마철에 물에 잠기지 않는 안전한 영역의 최대 개수를 출력한다.
  * @studyStartDate 2025-08-05
- * @studyEndDate 2025-08-05
+ * @studyEndDate 2025-08-06
  */
 public class Problem2468 {
 	static int N;
@@ -31,33 +31,36 @@ public class Problem2468 {
 	static int MAX_POINT = 0;
 	static int[] DX = {-1, 0, 1, 0};
 	static int[] DY = {0, 1, 0, -1};
-	static int RESULT = 0;
 	static int MAX_RESULT = 0;
 	
 	
-	static void dfs(int x, int y) {
-		CHECK_BOARD[x][y] = -1;
+	static void dfs(int x, int y, boolean[][] visited, int rainHeight) {
+		visited[x][y] = true;  // 현재 위치 방문 표시
+		
 		for(int i = 0; i < 4; i++) {
 			int nx = x + DX[i];
 			int ny = y + DY[i];
-			if(nx >= 0 && nx < N && ny >= 0 && ny < N && CHECK_BOARD[nx][ny] == 0) {
-				dfs(nx, ny);
+			if(nx >= 0 && nx < N && ny >= 0 && ny < N) {
+				if (!visited[nx][ny] && BOARD[nx][ny] > rainHeight) {
+					dfs(nx, ny, visited, rainHeight);
+				}
 			}
 		}
 	}
 	
-	static void solution() {
+	static void solution(int rainHeight) {
+		boolean[][] visited = new boolean[N][N];
+		int result = 0;
+		
 		for(int i = 0; i < N; i++) {
 			for(int j = 0; j < N; j++) {
-				if(CHECK_BOARD[i][j] > -1) {
-					RESULT++;
-					dfs(i, j);
-					
+				if (!visited[i][j] && BOARD[i][j] > rainHeight) {
+					dfs(i, j, visited, rainHeight);
+					result++;
 				}
 			}
 		}
-		MAX_RESULT = Math.max(MAX_RESULT, RESULT);
-		RESULT = 0;
+		MAX_RESULT = Math.max(MAX_RESULT, result);
 	}
 	
 	public static void main(String[] args) throws Exception {
@@ -82,19 +85,7 @@ public class Problem2468 {
 		}
 		
 		for(int p = 0; p <= MAX_POINT; p++) {
-			for(int i = 0; i < N; i++) {
-				for(int j = 0; j < N; j++) {
-					if(p >= BOARD[i][j]) {
-						CHECK_BOARD[i][j] = -1;
-					}
-				}
-			}
-			solution();
-			for(int i = 0; i < N; i++) {
-				for(int j = 0; j < N; j++) {
-					CHECK_BOARD[i][j] = 0;
-				}
-			}
+			solution(p);
 		}
 		
 		bw.write(String.valueOf(MAX_RESULT));
